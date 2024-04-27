@@ -30,6 +30,19 @@ async function run() {
     // await client.connect();
     const craftsCollection = client.db("craftsDB").collection("craft");
 
+    // get all data to MongoDB
+    app.get("/crafts", async (req, res) => {
+      const result = await craftsCollection.find().toArray();
+      res.send(result);
+    });
+
+    // get single data to MongoDB
+    app.get("/crafts/:id", async (req, res) => {
+      const id = req.params.id;
+      const result = await craftsCollection.findOne({ _id: new ObjectId(id) });
+      res.send(result);
+    });
+
     // save to mongoDb
     app.post("/crafts", async (req, res) => {
       const newCraft = req.body;
