@@ -44,7 +44,20 @@ async function run() {
       res.send(result);
     });
 
-    // get the email data to MongoDB
+    // get the email and customization ture data to MongoDB
+    app.get("/myArts/:email/:allYesNo", async (req, res) => {
+      const email = req.params.email;
+      const allYesNo = req.params.allYesNo;
+
+      console.log(allYesNo, email);
+
+      const result = await craftsCollection
+        .find({ userEmail: email, customization: allYesNo })
+        .toArray();
+      res.send(result);
+    });
+
+    // get the email true data to MongoDB
     app.get("/myArts/:email", async (req, res) => {
       const email = req.params.email;
 
