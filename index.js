@@ -29,6 +29,7 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     // await client.connect();
     const craftsCollection = client.db("craftsDB").collection("craft");
+    const categoriesCollection = client.db("craftsDB").collection("categories");
 
     // get all data to MongoDB
     app.get("/crafts", async (req, res) => {
