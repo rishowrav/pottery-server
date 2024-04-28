@@ -53,6 +53,16 @@ async function run() {
       res.send(result);
     });
 
+    // get the email data to MongoDB
+    app.get("/categories/:category", async (req, res) => {
+      const category = req.params.category;
+
+      const result = await craftsCollection
+        .find({ subcatagoryName: category })
+        .toArray();
+      res.send(result);
+    });
+
     // save to mongoDb
     app.post("/crafts", async (req, res) => {
       const newCraft = req.body;
