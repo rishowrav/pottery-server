@@ -54,6 +54,12 @@ async function run() {
       res.send(result);
     });
 
+    // get categories data to MongoDb
+    app.get("/categories", async (req, res) => {
+      const result = await categoriesCollection.find().toArray();
+      res.send(result);
+    });
+
     // get the email data to MongoDB
     app.get("/categories/:category", async (req, res) => {
       const category = req.params.category;
